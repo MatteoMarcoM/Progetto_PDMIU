@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pdmiu_app_biblioteca/widgets/homeDrawer.dart';
+import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 
 void main() {
   runApp(const MyApp());
@@ -10,58 +12,54 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'App Biblioteca',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepOrange,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const BiblioHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class BiblioHomePage extends StatefulWidget {
+  const BiblioHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<BiblioHomePage> createState() => _BiblioHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class _BiblioHomePageState extends State<BiblioHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text('Biblioteca Home Page'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            FutureBuilder(
+              future: httpHelper.getRootWebSite(),
+              builder: ((context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(
+                      child: Text('Connection Error: ${snapshot.error}'));
+                } else if (snapshot.hasData) {
+                  //final response = snapshot.data! as http.Response;
+
+                  return Center(
+                      child: Text(
+                          'Connesso alla root del servizio: ${snapshot.data!.body}'));
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              }),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      drawer: const HomeDrawer(),
     );
   }
 }
