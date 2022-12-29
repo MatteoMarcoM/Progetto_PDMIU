@@ -15,6 +15,14 @@ class UserDeleteBookPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Delete Book Page'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                // setstate o ref.watch?
+                user.loginJWT();
+              },
+              icon: const Icon(Icons.change_circle)),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(20),

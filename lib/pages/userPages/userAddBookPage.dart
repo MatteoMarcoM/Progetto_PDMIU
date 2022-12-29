@@ -15,6 +15,14 @@ class UserAddBookPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Book Page'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                // setstate o ref.watch?
+                user.loginJWT();
+              },
+              icon: const Text('JWT reload')),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(20),

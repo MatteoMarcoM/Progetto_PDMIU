@@ -16,6 +16,14 @@ class UserRenameBookPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Rename Book Page'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                // setstate o ref.watch?
+                user.loginJWT();
+              },
+              icon: const Icon(Icons.change_circle)),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -31,7 +39,7 @@ class UserRenameBookPage extends StatelessWidget {
                   children: [
                     Container(
                         padding: const EdgeInsets.all(20),
-                        child: const Icon(Icons.book)),
+                        child: const Icon(Icons.bookmark_remove_outlined)),
                     Expanded(
                       child: TextField(
                         decoration: const InputDecoration(
@@ -53,12 +61,12 @@ class UserRenameBookPage extends StatelessWidget {
                   children: [
                     Container(
                         padding: const EdgeInsets.all(20),
-                        child: const Icon(Icons.book)),
+                        child: const Icon(Icons.bookmark_add_outlined)),
                     Expanded(
                       child: TextField(
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: "Enter book's title",
+                          labelText: "Enter new book's title",
                         ),
                         onChanged: (text) {
                           newTitle = text;

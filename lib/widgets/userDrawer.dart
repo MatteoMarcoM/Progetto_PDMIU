@@ -21,7 +21,7 @@ class UserDrawer extends StatelessWidget {
             decoration: FlutterLogoDecoration(), child: Text("User drawer")),
         ListTile(
           leading: const Icon(Icons.home),
-          title: const Text("Homepage"),
+          title: const Text("Logout"),
           onTap: () {
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(builder: (context) => const BiblioHomePage()),

@@ -24,6 +24,14 @@ class _UserBookListPageState extends State<UserBookListPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("${user.username}'s Book List Page"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                // setstate o ref.watch?
+                user.loginJWT();
+              },
+              icon: const Icon(Icons.change_circle)),
+        ],
       ),
       body: FutureBuilder(
         future: user.getLibri(),
