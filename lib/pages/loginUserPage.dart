@@ -17,8 +17,8 @@ class LoginUserPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(Icons.people),
-                TextFormField(
+                const Icon(Icons.people),
+                TextField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter your username',
@@ -30,8 +30,8 @@ class LoginUserPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(Icons.password_outlined),
-                TextFormField(
+                const Icon(Icons.password_outlined),
+                TextField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter password',
