@@ -21,7 +21,7 @@ class UserAddBookPage extends StatelessWidget {
                 // setstate o ref.watch?
                 user.loginJWT();
               },
-              icon: const Text('JWT reload')),
+              icon: const Icon(Icons.change_circle)),
         ],
       ),
       body: Container(
