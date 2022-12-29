@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pdmiu_app_biblioteca/main.dart';
+import 'package:pdmiu_app_biblioteca/pages/biblioHomePage.dart';
+import 'package:pdmiu_app_biblioteca/pages/loginUserPage.dart';
+import 'package:pdmiu_app_biblioteca/pages/registerUserPage.dart';
+import 'package:pdmiu_app_biblioteca/pages/userListPage.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});
@@ -21,29 +24,33 @@ class HomeDrawer extends StatelessWidget {
           },
         ),
         ListTile(
-          title: const Text("Pagina secondaria"),
-          subtitle: const Text("Apri navigazione bottom bar"),
+          leading: const Icon(Icons.app_registration),
+          title: const Text("Registra utente"),
+          subtitle: const Text("Registra un utente al servizio"),
           onTap: () {
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const BiblioHomePage()),
+                MaterialPageRoute(
+                    builder: (context) => const RegisterUserPage()),
                 (route) => false);
           },
         ),
         ListTile(
-          title: const Text("Pagina secondaria"),
-          subtitle: const Text("Apri navigazione con schede"),
+          leading: const Icon(Icons.login_outlined),
+          title: const Text("Login utente"),
+          subtitle: const Text("Accedi al servizio tramite login"),
           onTap: () {
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const BiblioHomePage()),
+                MaterialPageRoute(builder: (context) => const LoginUserPage()),
                 (route) => false);
           },
         ),
         ListTile(
-          leading: const Icon(Icons.info_outline),
-          title: const Text("About"),
+          leading: const Icon(Icons.supervised_user_circle_sharp),
+          title: const Text("Lista utenti"),
+          subtitle: const Text("Lista degli utenti registrati al servizio"),
           onTap: () {
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const BiblioHomePage()),
+                MaterialPageRoute(builder: (context) => const UserListPage()),
                 (route) => false);
           },
         ),
