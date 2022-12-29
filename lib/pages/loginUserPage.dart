@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:pdmiu_app_biblioteca/models/user.dart';
+import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 import 'package:pdmiu_app_biblioteca/widgets/homeDrawer.dart';
+//import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 
 class LoginUserPage extends StatelessWidget {
   const LoginUserPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    String username = '';
+    String password = '';
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login User Page'),
@@ -31,7 +37,9 @@ class LoginUserPage extends StatelessWidget {
                           border: OutlineInputBorder(),
                           labelText: 'Enter your username',
                         ),
-                        onChanged: (text) {},
+                        onChanged: (text) {
+                          username = text;
+                        },
                       ),
                     ),
                   ],
@@ -51,7 +59,9 @@ class LoginUserPage extends StatelessWidget {
                           border: OutlineInputBorder(),
                           labelText: 'Enter your password',
                         ),
-                        onChanged: (text) {},
+                        onChanged: (text) {
+                          password = text;
+                        },
                       ),
                     ),
                   ],
@@ -60,7 +70,26 @@ class LoginUserPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(20),
                 child: ElevatedButton(
-                    onPressed: () {}, child: const Text('Login User')),
+                    onPressed: () {
+                      if (username != '' && password != '') {
+                        // creo l'utente
+                        User user =
+                            User(username: username, password: password);
+
+                        // apro la pagina dell'utente
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    UserBookListPage(user: user)),
+                            (route) => false);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content:
+                                    Text('Invalid Username or Password!')));
+                      }
+                    },
+                    child: const Text('Login !')),
               )
             ],
           ),

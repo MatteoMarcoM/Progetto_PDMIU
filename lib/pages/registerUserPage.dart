@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pdmiu_app_biblioteca/models/user.dart';
+import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 import 'package:pdmiu_app_biblioteca/widgets/homeDrawer.dart';
 //import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 
@@ -7,6 +9,9 @@ class RegisterUserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String username = '';
+    String password = '';
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Register User Page'),
@@ -32,7 +37,9 @@ class RegisterUserPage extends StatelessWidget {
                           border: OutlineInputBorder(),
                           labelText: 'Enter your username',
                         ),
-                        onChanged: (text) {},
+                        onChanged: (text) {
+                          username = text;
+                        },
                       ),
                     ),
                   ],
@@ -52,7 +59,9 @@ class RegisterUserPage extends StatelessWidget {
                           border: OutlineInputBorder(),
                           labelText: 'Enter your password',
                         ),
-                        onChanged: (text) {},
+                        onChanged: (text) {
+                          password = text;
+                        },
                       ),
                     ),
                   ],
@@ -61,7 +70,27 @@ class RegisterUserPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(20),
                 child: ElevatedButton(
-                    onPressed: () {}, child: const Text('Register User')),
+                    onPressed: () {
+                      if (username != '' && password != '') {
+                        // creo l'utente
+                        User user =
+                            User(username: username, password: password);
+
+                        // registro l'utente
+                        user.registerUser();
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content:
+                                    Text('User successfully registered!')));
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content:
+                                    Text('Invalid Username or Password!')));
+                      }
+                    },
+                    child: const Text('Register User !')),
               )
             ],
           ),
