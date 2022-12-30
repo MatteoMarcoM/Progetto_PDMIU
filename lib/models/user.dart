@@ -58,7 +58,7 @@ class User extends StateNotifier<UserData> {
   // sessione tramite JWT
   // 4. POST /utenti/login/jwt
   // con header Authorization: Basic mario:passwordDiMario
-  void loginJWT() async {
+  Future<http.Response> loginJWT() async {
     String path = '/utenti/login/jwt';
     var url = Uri.https(
       webServerRootPath,
@@ -79,6 +79,9 @@ class User extends StateNotifier<UserData> {
 
     state.jwtCookieSession = sessionCookie;
     state.jwtScaduto = false;
+
+    // per verificare lo statusCode
+    return response;
   }
 
   // 5. GET /utenti/mario/secret/jwt

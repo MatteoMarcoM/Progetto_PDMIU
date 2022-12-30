@@ -26,52 +26,54 @@ class UserDeleteBookPage extends ConsumerWidget {
               icon: const Icon(Icons.change_circle)),
         ],
       ),
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                        padding: const EdgeInsets.all(20),
-                        child: const Icon(Icons.book)),
-                    Expanded(
-                      child: TextField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Enter book's title",
+      body: ListView(children: [
+        Container(
+          padding: const EdgeInsets.all(20),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.all(20),
+                          child: const Icon(Icons.book)),
+                      Expanded(
+                        child: TextField(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Enter book's title",
+                          ),
+                          onChanged: (text) {
+                            title = text;
+                          },
                         ),
-                        onChanged: (text) {
-                          title = text;
-                        },
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                child: ElevatedButton(
-                    onPressed: () {
-                      if (title != '') {
-                        user.deleteBook(title);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Invalid title!')));
-                      }
-                    },
-                    child: const Text('Delete Book !')),
-              )
-            ],
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        if (title != '') {
+                          user.deleteBook(title);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Invalid title!')));
+                        }
+                      },
+                      child: const Text('Delete Book !')),
+                )
+              ],
+            ),
           ),
         ),
-      ),
+      ]),
       drawer: const UserDrawer(),
     );
   }

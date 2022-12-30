@@ -27,75 +27,77 @@ class UserRenameBookPage extends ConsumerWidget {
               icon: const Icon(Icons.change_circle)),
         ],
       ),
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                        padding: const EdgeInsets.all(20),
-                        child: const Icon(Icons.bookmark_remove_outlined)),
-                    Expanded(
-                      child: TextField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Enter old book's title",
+      body: ListView(children: [
+        Container(
+          padding: const EdgeInsets.all(20),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.all(20),
+                          child: const Icon(Icons.bookmark_remove_outlined)),
+                      Expanded(
+                        child: TextField(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Enter old book's title",
+                          ),
+                          onChanged: (text) {
+                            oldTitle = text;
+                          },
                         ),
-                        onChanged: (text) {
-                          oldTitle = text;
-                        },
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                        padding: const EdgeInsets.all(20),
-                        child: const Icon(Icons.bookmark_add_outlined)),
-                    Expanded(
-                      child: TextField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Enter new book's title",
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.all(20),
+                          child: const Icon(Icons.bookmark_add_outlined)),
+                      Expanded(
+                        child: TextField(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Enter new book's title",
+                          ),
+                          onChanged: (text) {
+                            newTitle = text;
+                          },
                         ),
-                        onChanged: (text) {
-                          newTitle = text;
-                        },
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                child: ElevatedButton(
-                    onPressed: () {
-                      if (oldTitle != '' && newTitle != '') {
-                        user.renameBook(oldTitle, newTitle);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Invalid book titles!')));
-                      }
-                    },
-                    child: const Text('Rename Book !')),
-              )
-            ],
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        if (oldTitle != '' && newTitle != '') {
+                          user.renameBook(oldTitle, newTitle);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Invalid book titles!')));
+                        }
+                      },
+                      child: const Text('Rename Book !')),
+                )
+              ],
+            ),
           ),
         ),
-      ),
+      ]),
       drawer: const UserDrawer(),
     );
   }
