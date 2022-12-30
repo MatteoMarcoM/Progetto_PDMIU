@@ -71,12 +71,9 @@ class UserDrawer extends ConsumerWidget {
           title: const Text("Impostazioni Account"),
           subtitle: const Text("Logout, Disiscriviti"),
           onTap: () {
-            userMario.deleteUser();
-
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(
-                    builder: (context) => const UserAccountPage()),
-                (route) => false);
+            // questa va messa sopra allo stack NB
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const UserAccountPage()));
           },
         ),
       ],

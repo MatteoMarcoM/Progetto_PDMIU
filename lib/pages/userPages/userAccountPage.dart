@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdmiu_app_biblioteca/widgets/userDrawer.dart';
 import '../../models/user.dart';
 import '../../utility/providers.dart';
 import '../biblioHomePage.dart';
@@ -50,7 +49,6 @@ class UserAccountPage extends ConsumerWidget {
           },
         ),
       ]),
-      drawer: const UserDrawer(),
     );
   }
 }
