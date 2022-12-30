@@ -33,15 +33,17 @@ class User extends StateNotifier<UserData> {
   // metodi per richieste dell'utente al server tramite API HTTP
 
   // 2. PUT /utenti/register/mario/passwordDiMario
-  void registerUser() async {
+  Future<http.Response> registerUser() async {
     String path = '/utenti/register/${state.username}/${state.password}';
     var url = Uri.https(
       webServerRootPath,
       path,
     );
 
-    http.put(url);
+    var response = await http.put(url);
     debugPrint('User registered: ${state.username}');
+
+    return response;
   }
 
   // 3. GET /utenti/mario
@@ -99,7 +101,7 @@ class User extends StateNotifier<UserData> {
   }
 
   // 6. PUT /utenti/mario/libri/add/1984
-  void addBook(String bookTitle) async {
+  Future<http.Response> addBook(String bookTitle) async {
     String path = '/utenti/${state.username}/libri/add/$bookTitle';
     var url = Uri.https(
       webServerRootPath,
@@ -110,6 +112,8 @@ class User extends StateNotifier<UserData> {
         await http.put(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
     debugPrint('Added book: $bookTitle at user: ${state.username}');
     debugPrint('Added book status: ${response.statusCode}');
+
+    return response;
   }
 
   // 7. 9. 11. GET /utenti/mario/libri
@@ -125,7 +129,7 @@ class User extends StateNotifier<UserData> {
   }
 
   // 8. POST /utenti/mario/libri/rename/1984/eragon
-  void renameBook(String oldBook, String newBook) async {
+  Future<http.Response> renameBook(String oldBook, String newBook) async {
     String path = '/utenti/${state.username}/libri/rename/$oldBook/$newBook';
     var url = Uri.https(
       webServerRootPath,
@@ -137,10 +141,12 @@ class User extends StateNotifier<UserData> {
     debugPrint(
         'Renaming book: $oldBook with book $newBook of user: ${state.username}');
     debugPrint('Renaming book status: ${response.statusCode}');
+
+    return response;
   }
 
   // 10. DELETE /utenti/mario/libri/remove/eragon
-  void deleteBook(String bookTitle) async {
+  Future<http.Response> deleteBook(String bookTitle) async {
     String path = '/utenti/${state.username}/libri/remove/$bookTitle';
     var url = Uri.https(
       webServerRootPath,
@@ -151,10 +157,12 @@ class User extends StateNotifier<UserData> {
         .delete(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
     debugPrint('Deleting book: $bookTitle of user: ${state.username}');
     debugPrint('Deleting book status: ${response.statusCode}');
+
+    return response;
   }
 
   // 12. DELETE /utenti/remove/mario
-  void deleteUser() async {
+  Future<http.Response> deleteUser() async {
     String path = '/utenti/remove/${state.username}';
     var url = Uri.https(
       webServerRootPath,
@@ -165,5 +173,7 @@ class User extends StateNotifier<UserData> {
         .delete(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
     debugPrint('Deleting user: ${state.username}');
     debugPrint('Deleting ${state.username} status: ${response.statusCode}');
+
+    return response;
   }
 }
