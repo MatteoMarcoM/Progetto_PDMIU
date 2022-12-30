@@ -67,7 +67,7 @@ class UserDrawer extends ConsumerWidget {
           },
         ),
         ListTile(
-          leading: const Icon(Icons.person_remove_sharp),
+          leading: const Icon(Icons.person_pin),
           title: const Text("Impostazioni Account"),
           subtitle: const Text("Logout, Disiscriviti"),
           onTap: () {

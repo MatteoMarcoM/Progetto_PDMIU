@@ -40,12 +40,19 @@ class UserAccountPage extends ConsumerWidget {
           leading: const Icon(Icons.person_remove_sharp),
           title: const Text("Cancella account"),
           subtitle: const Text("Disiscriviti dal servizio"),
-          onTap: () {
-            user.deleteUser();
+          onTap: () async {
+            final response = await user.deleteUser();
 
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const BiblioHomePage()),
-                (route) => false);
+            if (response.statusCode == 200) {
+              // apro la pagina
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => const BiblioHomePage()),
+                  (route) => false);
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('Request failed, try reloading JWT!!')));
+            }
           },
         ),
       ]),
