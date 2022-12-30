@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/models/user.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 import 'package:pdmiu_app_biblioteca/widgets/homeDrawer.dart';
+import '../utility/providers.dart';
 //import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 
-class LoginUserPage extends StatelessWidget {
+class LoginUserPage extends ConsumerWidget {
   const LoginUserPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     String username = '';
     String password = '';
 
@@ -73,8 +75,12 @@ class LoginUserPage extends StatelessWidget {
                     onPressed: () {
                       if (username != '' && password != '') {
                         // creo l'utente
-                        User user = User(
-                            UserData(username: username, password: password));
+                        // #####################
+                        // per ora ottengo mario
+                        User user = ref.watch(marioProvider.notifier);
+
+                        // effettuo il login e ottengo il JWT di autenticazione
+                        user.loginJWT();
 
                         // apro la pagina dell'utente
                         Navigator.of(context).pushAndRemoveUntil(

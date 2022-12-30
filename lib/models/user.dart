@@ -34,19 +34,19 @@ class User extends StateNotifier<UserData> {
 
   // 2. PUT /utenti/register/mario/passwordDiMario
   void registerUser() async {
-    String path = '/utenti/register/$state.username/$state.password';
+    String path = '/utenti/register/${state.username}/${state.password}';
     var url = Uri.https(
       webServerRootPath,
       path,
     );
 
     http.put(url);
-    debugPrint('User registered: $state.username');
+    debugPrint('User registered: ${state.username}');
   }
 
   // 3. GET /utenti/mario
   Future<http.Response> getBiblio() async {
-    var url = Uri.https(webServerRootPath, '/utenti/$state.username');
+    var url = Uri.https(webServerRootPath, '/utenti/${state.username}');
 
     var response = await http.get(url);
     debugPrint('Get mario response status: ${response.statusCode}');
@@ -84,7 +84,8 @@ class User extends StateNotifier<UserData> {
   // 5. GET /utenti/mario/secret/jwt
   // passando il cookie session JWT ottenuto precedentemente
   Future<http.Response> getSecret() async {
-    var url = Uri.https(webServerRootPath, '/utenti/${state.username}/secret/jwt');
+    var url =
+        Uri.https(webServerRootPath, '/utenti/${state.username}/secret/jwt');
 
     var response =
         await http.get(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
@@ -96,7 +97,7 @@ class User extends StateNotifier<UserData> {
 
   // 6. PUT /utenti/mario/libri/add/1984
   void addBook(String bookTitle) async {
-    String path = '/utenti/$state.username/libri/add/$bookTitle';
+    String path = '/utenti/${state.username}/libri/add/$bookTitle';
     var url = Uri.https(
       webServerRootPath,
       path,
@@ -104,7 +105,7 @@ class User extends StateNotifier<UserData> {
 
     http.Response response =
         await http.put(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
-    debugPrint('Added book: $bookTitle at user: $state.username');
+    debugPrint('Added book: $bookTitle at user: ${state.username}');
     debugPrint('Added book status: ${response.statusCode}');
   }
 
@@ -122,7 +123,7 @@ class User extends StateNotifier<UserData> {
 
   // 8. POST /utenti/mario/libri/rename/1984/eragon
   void renameBook(String oldBook, String newBook) async {
-    String path = '/utenti/$state.username/libri/rename/$oldBook/$newBook';
+    String path = '/utenti/${state.username}/libri/rename/$oldBook/$newBook';
     var url = Uri.https(
       webServerRootPath,
       path,
@@ -130,35 +131,36 @@ class User extends StateNotifier<UserData> {
 
     http.Response response =
         await http.post(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
-    debugPrint('Renaming book: $oldBook with book $newBook of user: $state.username');
+    debugPrint(
+        'Renaming book: $oldBook with book $newBook of user: ${state.username}');
     debugPrint('Renaming book status: ${response.statusCode}');
   }
 
   // 10. DELETE /utenti/mario/libri/remove/eragon
   void deleteBook(String bookTitle) async {
-    String path = '/utenti/$state.username/libri/remove/$bookTitle';
+    String path = '/utenti/${state.username}/libri/remove/$bookTitle';
     var url = Uri.https(
       webServerRootPath,
       path,
     );
 
-    http.Response response =
-        await http.delete(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
-    debugPrint('Deleting book: $bookTitle of user: $state.username');
+    http.Response response = await http
+        .delete(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
+    debugPrint('Deleting book: $bookTitle of user: ${state.username}');
     debugPrint('Deleting book status: ${response.statusCode}');
   }
 
   // 12. DELETE /utenti/remove/mario
   void deleteUser() async {
-    String path = '/utenti/remove/$state.username';
+    String path = '/utenti/remove/${state.username}';
     var url = Uri.https(
       webServerRootPath,
       path,
     );
 
-    http.Response response =
-        await http.delete(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
-    debugPrint('Deleting user: $state.username');
-    debugPrint('Deleting $state.username status: ${response.statusCode}');
+    http.Response response = await http
+        .delete(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
+    debugPrint('Deleting user: ${state.username}');
+    debugPrint('Deleting ${state.username} status: ${response.statusCode}');
   }
 }
