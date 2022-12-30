@@ -62,6 +62,8 @@ class UserAddBookPage extends ConsumerWidget {
                       onPressed: () {
                         if (title != '') {
                           user.addBook(title);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Book added!')));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Invalid title!')));

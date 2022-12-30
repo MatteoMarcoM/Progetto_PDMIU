@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pdmiu_app_biblioteca/pages/userPages/userAccountPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userDeleteBookPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userRenameBookPage.dart';
 import 'package:pdmiu_app_biblioteca/utility/providers.dart';
 import '../models/user.dart';
-import 'package:pdmiu_app_biblioteca/pages/biblioHomePage.dart';
+//import 'package:pdmiu_app_biblioteca/pages/biblioHomePage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userAddBookPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 
@@ -21,15 +22,6 @@ class UserDrawer extends ConsumerWidget {
       children: [
         const DrawerHeader(
             decoration: FlutterLogoDecoration(), child: Text("User drawer")),
-        ListTile(
-          leading: const Icon(Icons.home),
-          title: const Text("Logout"),
-          onTap: () {
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const BiblioHomePage()),
-                (route) => false);
-          },
-        ),
         ListTile(
           leading: const Icon(Icons.my_library_books),
           title: const Text("Lista Libri"),
@@ -76,13 +68,14 @@ class UserDrawer extends ConsumerWidget {
         ),
         ListTile(
           leading: const Icon(Icons.person_remove_sharp),
-          title: const Text("Cancella account"),
-          subtitle: const Text("Disiscriviti dal servizio"),
+          title: const Text("Impostazioni Account"),
+          subtitle: const Text("Logout, Disiscriviti"),
           onTap: () {
             userMario.deleteUser();
 
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const BiblioHomePage()),
+                MaterialPageRoute(
+                    builder: (context) => const UserAccountPage()),
                 (route) => false);
           },
         ),

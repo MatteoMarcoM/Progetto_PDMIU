@@ -85,6 +85,8 @@ class UserRenameBookPage extends ConsumerWidget {
                       onPressed: () {
                         if (oldTitle != '' && newTitle != '') {
                           user.renameBook(oldTitle, newTitle);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Book renamed!')));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(

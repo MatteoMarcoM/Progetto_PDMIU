@@ -85,7 +85,7 @@ class RegisterUserPage extends ConsumerWidget {
 
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(
-                                  '$User: {user.state.username} successfully registered!')));
+                                  'User: ${user.state.username} successfully registered!')));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(

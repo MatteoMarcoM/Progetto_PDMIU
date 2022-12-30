@@ -62,6 +62,8 @@ class UserDeleteBookPage extends ConsumerWidget {
                       onPressed: () {
                         if (title != '') {
                           user.deleteBook(title);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Book deleted!')));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Invalid title!')));
