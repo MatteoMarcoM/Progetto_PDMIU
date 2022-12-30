@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/models/user.dart';
 import 'package:pdmiu_app_biblioteca/widgets/userDrawer.dart';
+import '../../utility/providers.dart';
 
-class UserDeleteBookPage extends StatelessWidget {
+class UserDeleteBookPage extends ConsumerWidget {
   const UserDeleteBookPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     String title = '';
 
-    // da fare con current user e provider
-    User user = User(username: 'mario', password: 'passwordDiMario');
+    // ottengo l'utente
+    User user = ref.watch(marioProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(

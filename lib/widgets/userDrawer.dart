@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userDeleteBookPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userRenameBookPage.dart';
+import 'package:pdmiu_app_biblioteca/utility/providers.dart';
 import '../models/user.dart';
 import 'package:pdmiu_app_biblioteca/pages/biblioHomePage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userAddBookPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 
-// da fare con current user e provider
-final userMario = User(username: 'mario', password: 'passwordDiMario');
-
-class UserDrawer extends StatelessWidget {
+class UserDrawer extends ConsumerWidget {
   const UserDrawer({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // ottengo l'utente
+    User userMario = ref.watch(marioProvider.notifier);
+
     return Drawer(
         child: ListView(
       children: [
@@ -35,7 +37,7 @@ class UserDrawer extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
-                    builder: (context) => UserBookListPage(user: userMario)),
+                    builder: (context) => const UserBookListPage()),
                 (route) => false);
           },
         ),

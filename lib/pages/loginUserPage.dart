@@ -73,14 +73,13 @@ class LoginUserPage extends StatelessWidget {
                     onPressed: () {
                       if (username != '' && password != '') {
                         // creo l'utente
-                        User user =
-                            User(username: username, password: password);
+                        User user = User(
+                            UserData(username: username, password: password));
 
                         // apro la pagina dell'utente
                         Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    UserBookListPage(user: user)),
+                                builder: (context) => const UserBookListPage()),
                             (route) => false);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(

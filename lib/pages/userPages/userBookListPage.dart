@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/widgets/userDrawer.dart';
 import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 import 'package:http/http.dart' as http;
 import '../../models/user.dart';
+import '../../utility/providers.dart';
 
 // "home page" dell'utente
-class UserBookListPage extends StatefulWidget {
-  const UserBookListPage({super.key, required this.user});
-  final User user;
+class UserBookListPage extends ConsumerWidget {
+  const UserBookListPage({super.key});
 
   @override
-  State<UserBookListPage> createState() => _UserBookListPageState(user: user);
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    // ottengo l'utente
+    User user = ref.watch(marioProvider.notifier);
 
-class _UserBookListPageState extends State<UserBookListPage> {
-  // default user
-  final User user;
-
-  _UserBookListPageState({required this.user});
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("${user.username}'s Book List Page"),
+        // oppure fare metodo String user.getUsername()
+        title: Text("${user.state.username}'s Book List Page"),
         actions: [
           IconButton(
               onPressed: () {

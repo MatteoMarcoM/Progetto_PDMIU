@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdmiu_app_biblioteca/models/user.dart';
-import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
+//import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 import 'package:pdmiu_app_biblioteca/widgets/homeDrawer.dart';
 //import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 
@@ -73,8 +73,8 @@ class RegisterUserPage extends StatelessWidget {
                     onPressed: () {
                       if (username != '' && password != '') {
                         // creo l'utente
-                        User user =
-                            User(username: username, password: password);
+                        User user = User(
+                            UserData(username: username, password: password));
 
                         // registro l'utente
                         user.registerUser();
