@@ -41,7 +41,8 @@ class User extends StateNotifier<UserData> {
     );
 
     var response = await http.put(url);
-    debugPrint('User registered: ${state.username}');
+    debugPrint(
+        'PUT /utenti/register/${state.username}/${state.password} response status: ${response.statusCode}');
 
     return response;
   }
@@ -51,7 +52,8 @@ class User extends StateNotifier<UserData> {
     var url = Uri.https(webServerRootPath, '/utenti/${state.username}');
 
     var response = await http.get(url);
-    debugPrint('Get mario response status: ${response.statusCode}');
+    debugPrint(
+        'GET /utenti/${state.username} response status: ${response.statusCode}');
     debugPrint(response.body);
 
     return response;
@@ -73,11 +75,10 @@ class User extends StateNotifier<UserData> {
 
     http.Response response =
         await http.post(url, headers: {'Authorization': 'Basic $encoded'});
-    debugPrint(
-        '${state.username} login with JWT status: ${response.statusCode}');
+    debugPrint('${state.username} login status: ${response.statusCode}');
 
     var sessionCookie = response.headers['set-cookie'];
-    debugPrint('Cookie Session JWT: $sessionCookie');
+    debugPrint('${state.username} Cookie Session JWT: $sessionCookie');
 
     state.jwtCookieSession = sessionCookie;
     state.jwtScaduto = false;
@@ -94,7 +95,8 @@ class User extends StateNotifier<UserData> {
 
     var response =
         await http.get(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
-    debugPrint('Get mario secret response status: ${response.statusCode}');
+    debugPrint(
+        'GET /utenti/${state.username}/secret/jwt response status: ${response.statusCode}');
     debugPrint(response.body);
 
     return response;
@@ -110,8 +112,9 @@ class User extends StateNotifier<UserData> {
 
     http.Response response =
         await http.put(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
-    debugPrint('Added book: $bookTitle at user: ${state.username}');
-    debugPrint('Added book status: ${response.statusCode}');
+    //debugPrint('Added book: $bookTitle at user: ${state.username}');
+    debugPrint(
+        'PUT /utenti/${state.username}/libri/add/$bookTitle response status: ${response.statusCode}');
 
     return response;
   }
@@ -122,8 +125,9 @@ class User extends StateNotifier<UserData> {
 
     var response =
         await http.get(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
-    debugPrint('Get mario libri response status: ${response.statusCode}');
-    debugPrint(response.body);
+    debugPrint(
+        'GET /utenti/${state.username}/libri response status: ${response.statusCode}');
+    debugPrint('${state.username} -> ${response.body}');
 
     return response;
   }
@@ -138,9 +142,9 @@ class User extends StateNotifier<UserData> {
 
     http.Response response =
         await http.post(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
+    //debugPrint('Renaming book: $oldBook with book $newBook of user: ${state.username}');
     debugPrint(
-        'Renaming book: $oldBook with book $newBook of user: ${state.username}');
-    debugPrint('Renaming book status: ${response.statusCode}');
+        'POST /utenti/${state.username}/libri/rename/$oldBook/$newBook response status: ${response.statusCode}');
 
     return response;
   }
@@ -155,8 +159,9 @@ class User extends StateNotifier<UserData> {
 
     http.Response response = await http
         .delete(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
-    debugPrint('Deleting book: $bookTitle of user: ${state.username}');
-    debugPrint('Deleting book status: ${response.statusCode}');
+    //debugPrint('Deleting book: $bookTitle of user: ${state.username}');
+    debugPrint(
+        'DELETE /utenti/${state.username}/libri/remove/$bookTitle response status: ${response.statusCode}');
 
     return response;
   }
@@ -171,8 +176,9 @@ class User extends StateNotifier<UserData> {
 
     http.Response response = await http
         .delete(url, headers: {'Cookie': state.jwtCookieSession ?? ''});
-    debugPrint('Deleting user: ${state.username}');
-    debugPrint('Deleting ${state.username} status: ${response.statusCode}');
+    //debugPrint('Deleting user: ${state.username}');
+    debugPrint(
+        'DELETE /utenti/remove/${state.username} response status: ${response.statusCode}');
 
     return response;
   }

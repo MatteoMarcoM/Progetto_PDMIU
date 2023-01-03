@@ -92,8 +92,8 @@ class LoginUserPage extends ConsumerWidget {
                                 (route) => false);
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Request failed!!')));
+                                SnackBar(
+                                    content: Text('Request failed with status: ${response.statusCode}')));
                           }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(

@@ -59,11 +59,18 @@ class UserDeleteBookPage extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.all(20),
                   child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (title != '') {
-                          user.deleteBook(title);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Book deleted!')));
+                          final response = await user.deleteBook(title);
+
+                          if (response.statusCode == 200) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Book deleted!')));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    'Request failed with status: ${response.statusCode}')));
+                          }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Invalid title!')));

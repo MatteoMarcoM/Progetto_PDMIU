@@ -59,11 +59,18 @@ class UserAddBookPage extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.all(20),
                   child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (title != '') {
-                          user.addBook(title);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Book added!')));
+                          final response = await user.addBook(title);
+
+                          if (response.statusCode == 200) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Book added!')));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    'Request failed with status: ${response.statusCode}')));
+                          }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Invalid title!')));

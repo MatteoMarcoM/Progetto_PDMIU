@@ -82,11 +82,19 @@ class UserRenameBookPage extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.all(20),
                   child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (oldTitle != '' && newTitle != '') {
-                          user.renameBook(oldTitle, newTitle);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Book renamed!')));
+                          final response =
+                              await user.renameBook(oldTitle, newTitle);
+
+                          if (response.statusCode == 200) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Book renamed!')));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    'Request failed with status: ${response.statusCode}')));
+                          }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(

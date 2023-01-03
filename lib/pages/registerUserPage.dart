@@ -73,7 +73,7 @@ class RegisterUserPage extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.all(20),
                   child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (username != '' && password != '') {
                           // creo l'utente
                           // #####################
@@ -81,11 +81,17 @@ class RegisterUserPage extends ConsumerWidget {
                           User user = ref.watch(marioProvider.notifier);
 
                           // registro l'utente
-                          user.registerUser();
+                          final response = await user.registerUser();
 
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(
-                                  'User: ${user.state.username} successfully registered!')));
+                          if (response.statusCode == 200) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    'User: ${user.state.username} successfully registered!')));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    'Request failed with status: ${response.statusCode}')));
+                          }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
