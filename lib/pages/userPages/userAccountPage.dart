@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../models/user.dart';
+import '../../models/userList.dart';
 import '../../utility/providers.dart';
 import '../biblioHomePage.dart';
 
@@ -11,7 +12,10 @@ class UserAccountPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // ottengo l'utente
-    User user = ref.watch(marioProvider.notifier);
+    //String username = ref.watch(currentUserNameProvider);
+    //User user = ref.watch(specificUserProvider(username));
+
+    User user = ref.watch(currentUserProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -44,6 +48,14 @@ class UserAccountPage extends ConsumerWidget {
             final response = await user.deleteUser();
 
             if (response.statusCode == 200) {
+              // rimuovo l'utente dalla lista utenti
+              //UserList userList = ref.watch(userListProvider.notifier);
+              //userList.removeUser(user.state.username);
+
+              // reset notifier
+              user.state =
+                  UserData(username: 'mario', password: 'passwordDiMario');
+
               // apro la pagina
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(

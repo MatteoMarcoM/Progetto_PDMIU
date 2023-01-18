@@ -12,7 +12,10 @@ class UserAddBookPage extends ConsumerWidget {
     String title = '';
 
     // ottengo l'utente
-    User user = ref.watch(marioProvider.notifier);
+    //String username = ref.watch(currentUserNameProvider);
+    //User user = ref.watch(specificUserProvider(username));
+
+    User user = ref.watch(currentUserProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(

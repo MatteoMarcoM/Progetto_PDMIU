@@ -30,6 +30,11 @@ class UserData {
 class User extends StateNotifier<UserData> {
   User(super.state);
 
+  // getter
+  String getName() {
+    return super.state.username;
+  }
+
   // metodi per richieste dell'utente al server tramite API HTTP
 
   // 2. PUT /utenti/register/mario/passwordDiMario

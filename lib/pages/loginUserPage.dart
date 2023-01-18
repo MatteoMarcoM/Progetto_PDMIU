@@ -5,6 +5,7 @@ import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 import 'package:pdmiu_app_biblioteca/widgets/homeDrawer.dart';
 import '../utility/providers.dart';
 //import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
+import 'package:pdmiu_app_biblioteca/models/userList.dart';
 
 class LoginUserPage extends ConsumerWidget {
   const LoginUserPage({super.key});
@@ -35,7 +36,7 @@ class LoginUserPage extends ConsumerWidget {
                           padding: const EdgeInsets.all(20),
                           child: const Icon(Icons.people)),
                       Expanded(
-                        child: TextField(
+                        child: TextFormField(
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Enter your username',
@@ -57,7 +58,7 @@ class LoginUserPage extends ConsumerWidget {
                           padding: const EdgeInsets.all(20),
                           child: const Icon(Icons.password_outlined)),
                       Expanded(
-                        child: TextField(
+                        child: TextFormField(
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Enter your password',
@@ -75,10 +76,15 @@ class LoginUserPage extends ConsumerWidget {
                   child: ElevatedButton(
                       onPressed: () async {
                         if (username != '' && password != '') {
-                          // creo l'utente
-                          // #####################
-                          // per ora ottengo mario
-                          User user = ref.watch(marioProvider.notifier);
+                          // setto l'utente corrente
+                          //currentUserNameProvider.overrideWithValue(username);
+
+                          //UserList userList = ref.watch(userListProvider.notifier);
+
+                          //User user = userList.selectUser(username);
+                          User user = ref.watch(currentUserProvider.notifier);
+                          user.state =
+                              UserData(username: username, password: password);
 
                           // effettuo il login e ottengo il JWT di autenticazione
                           final response = await user.loginJWT();
@@ -91,9 +97,9 @@ class LoginUserPage extends ConsumerWidget {
                                         const UserBookListPage()),
                                 (route) => false);
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content: Text('Request failed with status: ${response.statusCode}')));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    'Request failed with status: ${response.statusCode}')));
                           }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(

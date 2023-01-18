@@ -14,9 +14,6 @@ class UserDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // ottengo l'utente
-    User userMario = ref.watch(marioProvider.notifier);
-
     return Drawer(
         child: ListView(
       children: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/models/user.dart';
+import 'package:pdmiu_app_biblioteca/models/userList.dart';
 import 'package:pdmiu_app_biblioteca/utility/providers.dart';
 //import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 import 'package:pdmiu_app_biblioteca/widgets/homeDrawer.dart';
@@ -75,10 +76,19 @@ class RegisterUserPage extends ConsumerWidget {
                   child: ElevatedButton(
                       onPressed: () async {
                         if (username != '' && password != '') {
-                          // creo l'utente
-                          // #####################
                           // per ora ottengo mario
-                          User user = ref.watch(marioProvider.notifier);
+                          //User user = ref.watch(marioProvider.notifier);
+
+                          // ottengo la lista (in locale) di utenti
+                          //UserList userList = ref.watch(userListProvider.notifier);
+
+                          //User user = userList.selectUser(username);
+                          User user = ref.watch(currentUserProvider.notifier);
+                          user.state =
+                              UserData(username: username, password: password);
+
+                          // aggiungo l'utente
+                          //userList.addUser(user);
 
                           // registro l'utente
                           final response = await user.registerUser();
@@ -86,7 +96,7 @@ class RegisterUserPage extends ConsumerWidget {
                           if (response.statusCode == 200) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
-                                    'User: ${user.state.username} successfully registered!')));
+                                    'User ${user.getName()} successfully registered!')));
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
