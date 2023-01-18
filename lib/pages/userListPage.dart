@@ -29,8 +29,8 @@ class UserListPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                      decoration: BoxDecoration(color: Colors.grey.shade300),
-                      margin: const EdgeInsets.only(bottom: 16),
+                      decoration: const BoxDecoration(color: Colors.white),
+                      margin: const EdgeInsets.only(top: 16, bottom: 16),
                       padding: const EdgeInsets.symmetric(
                           vertical: 8, horizontal: 16),
                       child: Center(

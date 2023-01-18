@@ -39,7 +39,23 @@ class UserBookListPage extends ConsumerWidget {
           } else if (snapshot.hasData) {
             final response = snapshot.data!; // as http.Response;
 
-            return Center(child: Text(response.body));
+            return ListView(children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      decoration: const BoxDecoration(color: Colors.white),
+                      margin: const EdgeInsets.only(top: 16, bottom: 16),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 16),
+                      child: Center(
+                        child: Text(response.body,
+                            style: Theme.of(context).textTheme.headline3),
+                      ))
+                ],
+              )
+            ]);
           } else {
             return const Center(child: CircularProgressIndicator());
           }
