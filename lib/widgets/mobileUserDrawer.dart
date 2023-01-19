@@ -9,8 +9,8 @@ import '../models/user.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userAddBookPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 
-class UserDrawer extends ConsumerWidget {
-  const UserDrawer({super.key});
+class MobileUserDrawer extends ConsumerWidget {
+  const MobileUserDrawer({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

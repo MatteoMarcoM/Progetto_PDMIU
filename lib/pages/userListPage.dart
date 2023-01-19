@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:pdmiu_app_biblioteca/widgets/homeDrawer.dart';
+import 'package:pdmiu_app_biblioteca/widgets/mobileHomeDrawer.dart';
 import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 import 'package:http/http.dart' as http;
 
@@ -45,7 +45,7 @@ class UserListPage extends StatelessWidget {
           }
         }),
       ),
-      drawer: const HomeDrawer(),
+      drawer: const MobileHomeDrawer(),
     );
   }
 }

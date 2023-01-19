@@ -4,7 +4,7 @@ import 'package:pdmiu_app_biblioteca/models/user.dart';
 import 'package:pdmiu_app_biblioteca/models/userList.dart';
 import 'package:pdmiu_app_biblioteca/utility/providers.dart';
 //import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
-import 'package:pdmiu_app_biblioteca/widgets/homeDrawer.dart';
+import 'package:pdmiu_app_biblioteca/widgets/mobileHomeDrawer.dart';
 //import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 
 class RegisterUserPage extends ConsumerWidget {
@@ -116,7 +116,7 @@ class RegisterUserPage extends ConsumerWidget {
           ),
         ),
       ]),
-      drawer: const HomeDrawer(),
+      drawer: const MobileHomeDrawer(),
     );
   }
 }

@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pdmiu_app_biblioteca/widgets/homeDrawer.dart';
+import 'package:pdmiu_app_biblioteca/widgets/mobileHomeDrawer.dart';
 import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 
-// staless widget?
-class BiblioHomePage extends StatefulWidget {
+class BiblioHomePage extends StatelessWidget {
   const BiblioHomePage({super.key});
 
-  @override
-  State<BiblioHomePage> createState() => _BiblioHomePageState();
-}
-
-class _BiblioHomePageState extends State<BiblioHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +36,7 @@ class _BiblioHomePageState extends State<BiblioHomePage> {
           ],
         ),
       ),
-      drawer: const HomeDrawer(),
+      drawer: const MobileHomeDrawer(),
     );
   }
 }

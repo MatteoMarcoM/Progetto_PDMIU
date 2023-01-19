@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/models/user.dart';
-import 'package:pdmiu_app_biblioteca/widgets/userDrawer.dart';
+import 'package:pdmiu_app_biblioteca/widgets/mobileUserDrawer.dart';
 import '../../utility/providers.dart';
 
 class UserRenameBookPage extends ConsumerWidget {
@@ -111,7 +111,7 @@ class UserRenameBookPage extends ConsumerWidget {
           ),
         ),
       ]),
-      drawer: const UserDrawer(),
+      drawer: const MobileUserDrawer(),
     );
   }
 }

@@ -4,8 +4,8 @@ import 'package:pdmiu_app_biblioteca/pages/loginUserPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/registerUserPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userListPage.dart';
 
-class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({super.key});
+class MobileHomeDrawer extends StatelessWidget {
+  const MobileHomeDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {

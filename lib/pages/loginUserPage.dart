@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/models/user.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
-import 'package:pdmiu_app_biblioteca/widgets/homeDrawer.dart';
+import 'package:pdmiu_app_biblioteca/widgets/mobileHomeDrawer.dart';
 import '../utility/providers.dart';
 //import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 import 'package:pdmiu_app_biblioteca/models/userList.dart';
@@ -115,7 +115,7 @@ class LoginUserPage extends ConsumerWidget {
           ),
         ),
       ]),
-      drawer: const HomeDrawer(),
+      drawer: const MobileHomeDrawer(),
     );
   }
 }
