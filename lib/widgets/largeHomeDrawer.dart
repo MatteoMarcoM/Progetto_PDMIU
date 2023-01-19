@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pdmiu_app_biblioteca/pages/biblioHomePage.dart';
+import 'package:pdmiu_app_biblioteca/pages/registerUserPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/responsivePages/responsiveHomePage.dart';
 import '../pages/responsivePages/responsiveAccessPage.dart';
 
@@ -7,10 +9,6 @@ class LargeHomeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ottengo la larghezza corrente dello schermo
-    final width = MediaQuery.of(context).size.width;
-    final isLarge = width > 800;
-
     return Drawer(
         child: ListView(
       children: [
@@ -23,8 +21,7 @@ class LargeHomeDrawer extends StatelessWidget {
           subtitle: const Text("Homepage e Accedi al servizio tramite login"),
           onTap: () {
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(
-                    builder: (context) => const ResponsiveHomePage()),
+                MaterialPageRoute(builder: (context) => const BiblioHomePage()),
                 (route) => false);
           },
         ),
@@ -35,7 +32,7 @@ class LargeHomeDrawer extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
-                    builder: (context) => const ResponsiveAccessPage()),
+                    builder: (context) => const RegisterUserPage()),
                 (route) => false);
           },
         ),
