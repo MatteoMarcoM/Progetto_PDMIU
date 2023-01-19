@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdmiu_app_biblioteca/pages/biblioHomePage.dart';
 import 'package:pdmiu_app_biblioteca/pages/registerUserPage.dart';
-import 'package:pdmiu_app_biblioteca/pages/responsivePages/responsiveHomePage.dart';
-import '../pages/responsivePages/responsiveAccessPage.dart';
 
 class LargeHomeDrawer extends StatelessWidget {
   const LargeHomeDrawer({super.key});

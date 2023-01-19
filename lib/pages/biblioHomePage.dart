@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pdmiu_app_biblioteca/pages/pagesBodys/biblioHomePageBody.dart';
 import 'package:pdmiu_app_biblioteca/pages/pagesBodys/userListPageBody.dart';
-import 'package:pdmiu_app_biblioteca/pages/responsivePages/responsiveHomePage.dart';
 import 'package:pdmiu_app_biblioteca/widgets/largeHomeDrawer.dart';
 import 'package:pdmiu_app_biblioteca/widgets/mobileHomeDrawer.dart';
 import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
-import 'package:pdmiu_app_biblioteca/widgets/responsiveHomeDrawer.dart';
 
 class BiblioHomePage extends StatelessWidget {
   const BiblioHomePage({super.key});
