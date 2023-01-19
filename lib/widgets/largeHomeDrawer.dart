@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pdmiu_app_biblioteca/pages/biblioHomePage.dart';
-import 'package:pdmiu_app_biblioteca/pages/registerUserPage.dart';
+import 'package:pdmiu_app_biblioteca/pages/mainPages/biblioHomePage.dart';
+import 'package:pdmiu_app_biblioteca/pages/mainPages/registerUserPage.dart';
 
 class LargeHomeDrawer extends StatelessWidget {
   const LargeHomeDrawer({super.key});
@@ -12,7 +12,7 @@ class LargeHomeDrawer extends StatelessWidget {
       children: [
         const DrawerHeader(
             decoration: FlutterLogoDecoration(),
-            child: Text("Responsive Home drawer")),
+            child: Text("Large Home drawer")),
         ListTile(
           leading: const Icon(Icons.home),
           title: const Text("Homepage / Lista utenti"),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pdmiu_app_biblioteca/pages/biblioHomePage.dart';
-import 'package:pdmiu_app_biblioteca/pages/loginUserPage.dart';
-import 'package:pdmiu_app_biblioteca/pages/registerUserPage.dart';
-import 'package:pdmiu_app_biblioteca/pages/userListPage.dart';
+import 'package:pdmiu_app_biblioteca/pages/mainPages/biblioHomePage.dart';
+import 'package:pdmiu_app_biblioteca/pages/mainPages/loginUserPage.dart';
+import 'package:pdmiu_app_biblioteca/pages/mainPages/registerUserPage.dart';
+import 'package:pdmiu_app_biblioteca/pages/mainPages/userListPage.dart';
 
 class MobileHomeDrawer extends StatelessWidget {
   const MobileHomeDrawer({super.key});
@@ -13,7 +13,8 @@ class MobileHomeDrawer extends StatelessWidget {
         child: ListView(
       children: [
         const DrawerHeader(
-            decoration: FlutterLogoDecoration(), child: Text("Home drawer")),
+            decoration: FlutterLogoDecoration(),
+            child: Text("Small Home drawer")),
         ListTile(
           leading: const Icon(Icons.home),
           title: const Text("Homepage"),

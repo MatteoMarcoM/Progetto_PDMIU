@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pdmiu_app_biblioteca/pages/pagesBodys/biblioHomePageBody.dart';
-import 'package:pdmiu_app_biblioteca/pages/pagesBodys/userListPageBody.dart';
+import 'package:pdmiu_app_biblioteca/pages/mainPagesBodys/biblioHomePageBody.dart';
+import 'package:pdmiu_app_biblioteca/pages/mainPagesBodys/userListPageBody.dart';
 import 'package:pdmiu_app_biblioteca/widgets/largeHomeDrawer.dart';
 import 'package:pdmiu_app_biblioteca/widgets/mobileHomeDrawer.dart';
 import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;

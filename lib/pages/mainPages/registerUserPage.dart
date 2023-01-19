@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/models/user.dart';
-import 'package:pdmiu_app_biblioteca/pages/pagesBodys/loginUserPageBody.dart';
-import 'package:pdmiu_app_biblioteca/pages/pagesBodys/registerUserPageBody.dart';
-import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
-import 'package:pdmiu_app_biblioteca/widgets/largeHomeDrawer.dart';
-import 'package:pdmiu_app_biblioteca/widgets/mobileHomeDrawer.dart';
-import '../utility/providers.dart';
-//import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 import 'package:pdmiu_app_biblioteca/models/userList.dart';
+import 'package:pdmiu_app_biblioteca/pages/mainPagesBodys/loginUserPageBody.dart';
+import 'package:pdmiu_app_biblioteca/pages/mainPagesBodys/registerUserPageBody.dart';
+import 'package:pdmiu_app_biblioteca/utility/providers.dart';
+import 'package:pdmiu_app_biblioteca/widgets/largeHomeDrawer.dart';
+//import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
+import 'package:pdmiu_app_biblioteca/widgets/mobileHomeDrawer.dart';
+//import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 
-class LoginUserPage extends ConsumerWidget {
-  const LoginUserPage({super.key});
+class RegisterUserPage extends ConsumerWidget {
+  const RegisterUserPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +20,7 @@ class LoginUserPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login User Page'),
+        title: const Text('Register User Page'),
       ),
       body: (isLarge)
           ? Row(
@@ -31,7 +31,7 @@ class LoginUserPage extends ConsumerWidget {
                 Expanded(child: LoginUserPageBody())
               ],
             )
-          : const LoginUserPageBody(),
+          : const RegisterUserPageBody(),
       drawer: (isLarge) ? const LargeHomeDrawer() : const MobileHomeDrawer(),
     );
   }

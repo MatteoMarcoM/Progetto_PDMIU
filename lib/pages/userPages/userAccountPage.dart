@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../models/user.dart';
 import '../../models/userList.dart';
 import '../../utility/providers.dart';
-import '../biblioHomePage.dart';
+import '../mainPages/biblioHomePage.dart';
 
 // "home page" dell'utente
 class UserAccountPage extends ConsumerWidget {
