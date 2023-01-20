@@ -20,7 +20,7 @@ class LoginUserPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login User Page'),
+        title: const Text('Biblioteca App'),
       ),
       body: (isLarge)
           ? Row(

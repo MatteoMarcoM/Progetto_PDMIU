@@ -20,7 +20,7 @@ class RegisterUserPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register User Page'),
+        title: const Text('Biblioteca App'),
       ),
       body: (isLarge)
           ? Row(

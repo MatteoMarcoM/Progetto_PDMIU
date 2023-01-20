@@ -18,7 +18,7 @@ class UserListPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('List User Page'),
+        title: const Text('Biblioteca App'),
       ),
       body: (isLarge)
           ? Row(

@@ -15,7 +15,7 @@ class BiblioHomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Biblioteca Home Page'),
+        title: const Text('Biblioteca App'),
       ),
       body: (isLarge)
           ? Row(
