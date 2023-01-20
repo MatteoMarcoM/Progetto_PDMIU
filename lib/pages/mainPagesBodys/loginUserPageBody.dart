@@ -5,6 +5,7 @@ import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 import 'package:pdmiu_app_biblioteca/utility/providers.dart';
 //import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 import 'package:pdmiu_app_biblioteca/models/userList.dart';
+import '../userPages/userAddBookPage.dart';
 
 class LoginUserPageBody extends ConsumerWidget {
   const LoginUserPageBody({super.key});
@@ -89,7 +90,7 @@ class LoginUserPageBody extends ConsumerWidget {
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const UserBookListPage()),
+                                      const UserAddBookPage()),
                               (route) => false);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(

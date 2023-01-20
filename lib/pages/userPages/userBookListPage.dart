@@ -5,6 +5,9 @@ import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 import 'package:http/http.dart' as http;
 import '../../models/user.dart';
 import '../../utility/providers.dart';
+import '../../widgets/largeUserDrawer.dart';
+import '../userPagesBodys/userAddBookPageBody.dart';
+import '../userPagesBodys/userBookListPageBody.dart';
 
 // "home page" dell'utente
 class UserBookListPage extends ConsumerWidget {
@@ -17,6 +20,9 @@ class UserBookListPage extends ConsumerWidget {
     //User user = ref.watch(specificUserProvider(username));
 
     User user = ref.watch(currentUserProvider.notifier);
+
+    final width = MediaQuery.of(context).size.width;
+    final isLarge = width > 800;
 
     return Scaffold(
       appBar: AppBar(
@@ -31,37 +37,17 @@ class UserBookListPage extends ConsumerWidget {
               icon: const Icon(Icons.change_circle)),
         ],
       ),
-      body: FutureBuilder(
-        future: user.getLibri(),
-        builder: ((context, snapshot) {
-          if (snapshot.hasError) {
-            return Center(child: Text('Connection Error: ${snapshot.error}'));
-          } else if (snapshot.hasData) {
-            final response = snapshot.data!; // as http.Response;
-
-            return ListView(children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                      decoration: const BoxDecoration(color: Colors.white),
-                      margin: const EdgeInsets.only(top: 16, bottom: 16),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 16),
-                      child: Center(
-                        child: Text(response.body,
-                            style: Theme.of(context).textTheme.headline3),
-                      ))
-                ],
-              )
-            ]);
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        }),
-      ),
-      drawer: const MobileUserDrawer(),
+      body: (isLarge)
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Expanded(child: UserAddBookPageBody()),
+                Expanded(child: UserBookListPageBody())
+              ],
+            )
+          : const UserBookListPageBody(),
+      drawer: (isLarge) ? const LargeUserDrawer() : const MobileUserDrawer(),
     );
   }
 }

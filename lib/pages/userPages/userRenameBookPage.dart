@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/models/user.dart';
 import 'package:pdmiu_app_biblioteca/widgets/mobileUserDrawer.dart';
 import '../../utility/providers.dart';
+import '../../widgets/largeUserDrawer.dart';
+import '../userPagesBodys/userBookListPageBody.dart';
+import '../userPagesBodys/userRenameBookPageBody.dart';
 
 class UserRenameBookPage extends ConsumerWidget {
   const UserRenameBookPage({super.key});
@@ -18,6 +21,9 @@ class UserRenameBookPage extends ConsumerWidget {
 
     User user = ref.watch(currentUserProvider.notifier);
 
+    final width = MediaQuery.of(context).size.width;
+    final isLarge = width > 800;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Rename Book Page'),
@@ -30,88 +36,17 @@ class UserRenameBookPage extends ConsumerWidget {
               icon: const Icon(Icons.change_circle)),
         ],
       ),
-      body: ListView(children: [
-        Container(
-          padding: const EdgeInsets.all(20),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                          padding: const EdgeInsets.all(20),
-                          child: const Icon(Icons.bookmark_remove_outlined)),
-                      Expanded(
-                        child: TextField(
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: "Enter old book's title",
-                          ),
-                          onChanged: (text) {
-                            oldTitle = text;
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                          padding: const EdgeInsets.all(20),
-                          child: const Icon(Icons.bookmark_add_outlined)),
-                      Expanded(
-                        child: TextField(
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: "Enter new book's title",
-                          ),
-                          onChanged: (text) {
-                            newTitle = text;
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  child: ElevatedButton(
-                      onPressed: () async {
-                        if (oldTitle != '' && newTitle != '') {
-                          final response =
-                              await user.renameBook(oldTitle, newTitle);
-
-                          if (response.statusCode == 200) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Book renamed!')));
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text(
-                                    'Request failed with status: ${response.statusCode}')));
-                          }
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text('Invalid book titles!')));
-                        }
-                      },
-                      child: const Text('Rename Book !')),
-                )
+      body: (isLarge)
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Expanded(child: UserRenameBookPageBody()),
+                Expanded(child: UserBookListPageBody())
               ],
-            ),
-          ),
-        ),
-      ]),
-      drawer: const MobileUserDrawer(),
+            )
+          : const UserRenameBookPageBody(),
+      drawer: (isLarge) ? const LargeUserDrawer() : const MobileUserDrawer(),
     );
   }
 }
