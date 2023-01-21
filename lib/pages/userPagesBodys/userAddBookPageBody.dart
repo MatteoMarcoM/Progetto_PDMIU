@@ -10,11 +10,6 @@ class UserAddBookPageBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     String title = '';
-
-    // ottengo l'utente
-    //String username = ref.watch(currentUserNameProvider);
-    //User user = ref.watch(specificUserProvider(username));
-
     User user = ref.watch(currentUserProvider.notifier);
 
     return ListView(children: [
@@ -25,6 +20,23 @@ class UserAddBookPageBody extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                margin: const EdgeInsets.symmetric(vertical: 20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: Colors.blueGrey.shade100,
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 10,
+                          offset: Offset.fromDirection(120, 8),
+                          color: Colors.blue.shade100)
+                    ]),
+                child: const Center(
+                    child: Text('Add a Book Title',
+                        style: TextStyle(fontSize: 20))),
+              ),
               Container(
                 padding: const EdgeInsets.all(20),
                 child: Row(

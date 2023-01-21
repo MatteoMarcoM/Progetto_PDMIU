@@ -62,40 +62,52 @@ class DetailsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     User user = ref.watch(currentUserProvider.notifier);
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
       children: [
         Container(
-          padding: const EdgeInsets.all(16),
-          color: Colors.grey.shade700,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  'Username: ',
-                  style: Theme.of(context).textTheme.headline3,
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            margin: const EdgeInsets.symmetric(vertical: 20),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                color: Colors.blueGrey.shade100,
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 10,
+                      offset: Offset.fromDirection(120, 8),
+                      color: Colors.blue.shade100)
+                ]),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Text(
+                        'Username: ',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        '${user.getName()}',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                    )
+                  ],
                 ),
-              ),
-              Center(
-                child: Text(
-                  '${user.getName()}',
-                  style: Theme.of(context).textTheme.headline3,
-                ),
-              )
-            ],
-          ),
-        ),
-        Container(
-          color: Theme.of(context).primaryColor,
-          child: Row(
-            children: [
-              const Text('Cookie session JWT: '),
-              Flexible(child: Text('${user.state.jwtCookieSession}'))
-            ],
-          ),
-        )
+                Container(
+                  color: Theme.of(context).primaryColor,
+                  child: Row(
+                    children: [
+                      const Text('Cookie session JWT: '),
+                      Flexible(child: Text('${user.state.jwtCookieSession}'))
+                    ],
+                  ),
+                )
+              ],
+            ))
       ],
     );
   }

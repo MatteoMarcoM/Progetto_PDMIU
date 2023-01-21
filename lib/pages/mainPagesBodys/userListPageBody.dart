@@ -16,20 +16,23 @@ class UserListPageBody extends StatelessWidget {
 
           // return Center(child: _UserListView(response));
           return ListView(children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                    decoration: const BoxDecoration(color: Colors.white),
-                    margin: const EdgeInsets.only(top: 16, bottom: 16),
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                    child: Center(
-                      child: Text(response.body,
-                          style: Theme.of(context).textTheme.headline3),
-                    ))
-              ],
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      decoration: const BoxDecoration(color: Colors.white),
+                      margin: const EdgeInsets.only(top: 16, bottom: 16),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 16),
+                      child: Center(
+                        child: Text(response.body,
+                            style: Theme.of(context).textTheme.bodyText1),
+                      ))
+                ],
+              ),
             )
           ]);
         } else {

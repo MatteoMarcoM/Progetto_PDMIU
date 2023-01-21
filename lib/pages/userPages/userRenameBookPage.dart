@@ -26,7 +26,7 @@ class UserRenameBookPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rename Book Page'),
+        title: Text("${user.state.username}'s Account"),
         actions: [
           IconButton(
               onPressed: () {

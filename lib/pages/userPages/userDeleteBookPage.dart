@@ -27,7 +27,7 @@ class UserDeleteBookPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Delete Book Page'),
+        title: Text("${user.state.username}'s Account"),
         actions: [
           IconButton(
               onPressed: () {

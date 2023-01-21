@@ -25,7 +25,7 @@ class UserAddBookPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Book Page'),
+        title: Text("${user.state.username}'s Account"),
         actions: [
           IconButton(
               onPressed: () {

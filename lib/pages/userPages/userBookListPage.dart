@@ -27,7 +27,7 @@ class UserBookListPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         // oppure fare metodo String user.getUsername()
-        title: Text("${user.state.username}'s Book List Page"),
+        title: Text("${user.state.username}'s Account"),
         actions: [
           IconButton(
               onPressed: () {

@@ -32,13 +32,21 @@ class UserBookListPageBody extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                    decoration: const BoxDecoration(color: Colors.white),
-                    margin: const EdgeInsets.only(top: 16, bottom: 16),
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 20),
+                    margin: const EdgeInsets.symmetric(vertical: 20),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: Colors.blueGrey.shade100,
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 10,
+                              offset: Offset.fromDirection(120, 8),
+                              color: Colors.blue.shade100)
+                        ]),
                     child: Center(
                       child: Text(response.body,
-                          style: Theme.of(context).textTheme.headline3),
+                          style: Theme.of(context).textTheme.bodyText1),
                     ))
               ],
             )
