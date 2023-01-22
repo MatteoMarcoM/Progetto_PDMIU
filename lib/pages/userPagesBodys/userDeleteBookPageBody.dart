@@ -31,16 +31,16 @@ class UserDeleteBookPageBody extends ConsumerWidget {
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      color: Colors.blueGrey.shade100,
+                      color: Colors.deepOrange.shade500,
                       boxShadow: [
                         BoxShadow(
                             blurRadius: 10,
                             offset: Offset.fromDirection(120, 8),
-                            color: Colors.blue.shade100)
+                            color: Colors.black.withAlpha(100))
                       ]),
                   child: const Center(
                       child: Text('Delete a Book',
-                          style: TextStyle(fontSize: 20))),
+                          style: TextStyle(fontSize: 20, color: Colors.white))),
                 ),
               ),
               Container(

@@ -25,16 +25,16 @@ class UserListPageBody extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: 20),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      color: Colors.blueGrey.shade100,
+                      color: Colors.deepOrange.shade500,
                       boxShadow: [
                         BoxShadow(
                             blurRadius: 10,
                             offset: Offset.fromDirection(120, 8),
-                            color: Colors.blue.shade100)
+                            color: Colors.black.withAlpha(100))
                       ]),
                   child: const Center(
                       child: Text('Lista degli utenti',
-                          style: TextStyle(fontSize: 20))),
+                          style: TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 Expanded(
                   child: ListView.builder(
@@ -45,16 +45,17 @@ class UserListPageBody extends StatelessWidget {
                             margin: const EdgeInsets.symmetric(vertical: 10),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
-                                color: Colors.blueGrey.shade100,
+                                color: Colors.deepOrange.shade500,
                                 boxShadow: [
                                   BoxShadow(
                                       blurRadius: 10,
                                       offset: Offset.fromDirection(120, 8),
-                                      color: Colors.blue.shade300)
+                                      color: Colors.black.withAlpha(100))
                                 ]),
                             child: Center(
                               child: Text(_trimResponse(response.body)[index],
-                                  style: const TextStyle(fontSize: 20)),
+                                  style: const TextStyle(
+                                      fontSize: 20, color: Colors.white)),
                             ));
                       }),
                 ),

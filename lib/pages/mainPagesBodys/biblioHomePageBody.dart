@@ -21,16 +21,17 @@ class BiblioHomePageBody extends StatelessWidget {
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            color: Colors.blueGrey.shade100,
+                            color: Colors.deepOrange.shade500,
                             boxShadow: [
                               BoxShadow(
                                   blurRadius: 10,
                                   offset: Offset.fromDirection(120, 8),
-                                  color: Colors.blue.shade100)
+                                  color: Colors.black.withAlpha(100))
                             ]),
                         child: Center(
                           child: Text('Connection Error: ${snapshot.error}',
-                              style: const TextStyle(fontSize: 16)),
+                              style: const TextStyle(
+                                  fontSize: 16, color: Colors.white)),
                         )),
                   ),
                 );
@@ -44,17 +45,19 @@ class BiblioHomePageBody extends StatelessWidget {
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            color: Colors.blueGrey.shade100,
+                            color: Colors.deepOrange.shade500,
                             boxShadow: [
                               BoxShadow(
                                   blurRadius: 10,
                                   offset: Offset.fromDirection(120, 8),
-                                  color: Colors.blue.shade100)
+                                  color: Colors.black.withAlpha(100))
                             ]),
                         child: Center(
                           child: Text(
-                              'Connesso alla root del servizio: ${response.body}',
-                              style: const TextStyle(fontSize: 16)),
+                            'Connesso alla root del servizio: ${response.body}',
+                            style: const TextStyle(
+                                fontSize: 18, color: Colors.white),
+                          ),
                         )),
                   ),
                 );

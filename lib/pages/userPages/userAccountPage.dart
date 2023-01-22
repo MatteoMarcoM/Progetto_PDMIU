@@ -24,35 +24,37 @@ class UserAccountPage extends ConsumerWidget {
     final isLarge = width > largeScreenBreakpoint;
 
     return Scaffold(
-        appBar: AppBar(
-          // oppure fare metodo String user.getUsername()
-          title: const Text("Account Info and settings"),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  // successful login?
-                  user.loginJWT();
-                },
-                icon: const Icon(Icons.change_circle)),
-          ],
-        ),
-        body: (isLarge)
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Expanded(child: DetailsView()),
-                  Expanded(child: AccountButtonsLisView()),
-                ],
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  AccountButtonsLisView(),
-                  Expanded(child: DetailsView()),
-                ],
-              ));
+      appBar: AppBar(
+        // oppure fare metodo String user.getUsername()
+        title: const Text("Account Info and settings"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                // successful login?
+                user.loginJWT();
+              },
+              icon: const Icon(Icons.change_circle)),
+        ],
+      ),
+      body: (isLarge)
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Expanded(child: AccountButtonsView()),
+                Expanded(child: ListView(children: const [DetailsView()])),
+              ],
+            )
+          : ListView(children: [
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    AccountButtonsView(),
+                    DetailsView(),
+                  ]),
+            ]),
+    );
   }
 }
 
@@ -63,101 +65,95 @@ class DetailsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     User user = ref.watch(currentUserProvider.notifier);
 
-    return ListView(
-      children: [
-        Padding(
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Container(
           padding: const EdgeInsets.all(20),
-          child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.blueGrey.shade100,
-                  boxShadow: [
-                    BoxShadow(
-                        blurRadius: 10,
-                        offset: Offset.fromDirection(120, 8),
-                        color: Colors.blue.shade100)
-                  ]),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Center(
-                      child: Text("Dettagli dell'Account",
-                          style: TextStyle(fontSize: 20))),
-                  Container(
-                    height: 30,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: Colors.blueGrey.shade100,
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 10,
-                              offset: Offset.fromDirection(120, 8),
-                              color: Colors.blue.shade500)
-                        ]),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Center(
-                          child: Text(
-                            'Username: ',
-                            style: Theme.of(context).textTheme.bodyText1,
-                          ),
-                        ),
-                        Center(
-                          child: Text(
-                            '${user.getName()}',
-                            style: Theme.of(context).textTheme.bodyText1,
-                          ),
-                        )
-                      ],
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              color: Colors.deepOrange.shade500,
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 10,
+                    offset: Offset.fromDirection(120, 8),
+                    color: Colors.black.withAlpha(100))
+              ]),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Center(
+                  child: Text("Dettagli dell'Account",
+                      style: TextStyle(fontSize: 20, color: Colors.white))),
+              Container(
+                height: 30,
+              ),
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: Colors.deepOrange.shade500,
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 10,
+                          offset: Offset.fromDirection(120, 8),
+                          color: Colors.black.withAlpha(100))
+                    ]),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Center(
+                      child: Text(
+                        'Username: ',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 10,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: Colors.blueGrey.shade100,
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 10,
-                              offset: Offset.fromDirection(120, 8),
-                              color: Colors.blue.shade500)
-                        ]),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Cookie session JWT: ',
-                          style: Theme.of(context).textTheme.bodyText1,
-                        ),
-                        Flexible(
-                            child: Text(
-                          '${user.state.jwtCookieSession}',
-                          style: Theme.of(context).textTheme.bodyText1,
-                        ))
-                      ],
-                    ),
-                  )
-                ],
-              )),
-        )
-      ],
+                    Center(
+                      child: Text(
+                        '${user.getName()}',
+                        style:
+                            const TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                height: 10,
+              ),
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: Colors.deepOrange.shade500,
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 10,
+                          offset: Offset.fromDirection(120, 8),
+                          color: Colors.black.withAlpha(100))
+                    ]),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Cookie session JWT: ',
+                        style: TextStyle(fontSize: 16, color: Colors.white)),
+                    Flexible(
+                        child: Text('${user.state.jwtCookieSession}',
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.white)))
+                  ],
+                ),
+              )
+            ],
+          )),
     );
   }
 }
 
-class AccountButtonsLisView extends ConsumerWidget {
-  const AccountButtonsLisView({super.key});
+class AccountButtonsView extends ConsumerWidget {
+  const AccountButtonsView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -174,16 +170,16 @@ class AccountButtonsLisView extends ConsumerWidget {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
-                  color: Colors.blueGrey.shade100,
+                  color: Colors.deepOrange.shade500,
                   boxShadow: [
                     BoxShadow(
                         blurRadius: 10,
                         offset: Offset.fromDirection(120, 8),
-                        color: Colors.blue.shade100)
+                        color: Colors.black.withAlpha(100))
                   ]),
               child: const Center(
                   child: Text("Impostazioni dell'Account",
-                      style: TextStyle(fontSize: 20))),
+                      style: TextStyle(fontSize: 20, color: Colors.white))),
             ),
           ),
           Container(
