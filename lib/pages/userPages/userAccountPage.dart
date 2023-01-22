@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pdmiu_app_biblioteca/main.dart';
 import 'package:pdmiu_app_biblioteca/widgets/largeUserDrawer.dart';
 import 'package:pdmiu_app_biblioteca/widgets/mobileUserDrawer.dart';
 import '../../models/user.dart';
@@ -20,7 +21,7 @@ class UserAccountPage extends ConsumerWidget {
     User user = ref.watch(currentUserProvider.notifier);
 
     final width = MediaQuery.of(context).size.width;
-    final isLarge = width > 800;
+    final isLarge = width > largeScreenBreakpoint;
 
     return Scaffold(
         appBar: AppBar(
@@ -48,7 +49,7 @@ class UserAccountPage extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
-                  Expanded(child: AccountButtonsLisView()),
+                  AccountButtonsLisView(),
                   Expanded(child: DetailsView()),
                 ],
               ));
@@ -64,50 +65,92 @@ class DetailsView extends ConsumerWidget {
 
     return ListView(
       children: [
-        Container(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            margin: const EdgeInsets.symmetric(vertical: 20),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                color: Colors.blueGrey.shade100,
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 10,
-                      offset: Offset.fromDirection(120, 8),
-                      color: Colors.blue.shade100)
-                ]),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Text(
-                        'Username: ',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ),
-                    Center(
-                      child: Text(
-                        '${user.getName()}',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    )
-                  ],
-                ),
-                Container(
-                  color: Theme.of(context).primaryColor,
-                  child: Row(
-                    children: [
-                      const Text('Cookie session JWT: '),
-                      Flexible(child: Text('${user.state.jwtCookieSession}'))
-                    ],
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.blueGrey.shade100,
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 10,
+                        offset: Offset.fromDirection(120, 8),
+                        color: Colors.blue.shade100)
+                  ]),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Center(
+                      child: Text("Dettagli dell'Account",
+                          style: TextStyle(fontSize: 20))),
+                  Container(
+                    height: 30,
                   ),
-                )
-              ],
-            ))
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: Colors.blueGrey.shade100,
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 10,
+                              offset: Offset.fromDirection(120, 8),
+                              color: Colors.blue.shade500)
+                        ]),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Center(
+                          child: Text(
+                            'Username: ',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                        ),
+                        Center(
+                          child: Text(
+                            '${user.getName()}',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: Colors.blueGrey.shade100,
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 10,
+                              offset: Offset.fromDirection(120, 8),
+                              color: Colors.blue.shade500)
+                        ]),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Cookie session JWT: ',
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                        Flexible(
+                            child: Text(
+                          '${user.state.jwtCookieSession}',
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ))
+                      ],
+                    ),
+                  )
+                ],
+              )),
+        )
       ],
     );
   }
@@ -123,57 +166,68 @@ class AccountButtonsLisView extends ConsumerWidget {
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            color: Theme.of(context).backgroundColor,
-            padding: const EdgeInsets.all(16),
-            child: Center(
-              child: Text(
-                "Impostazioni dell'Account",
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.blueGrey.shade100,
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 10,
+                        offset: Offset.fromDirection(120, 8),
+                        color: Colors.blue.shade100)
+                  ]),
+              child: const Center(
+                  child: Text("Impostazioni dell'Account",
+                      style: TextStyle(fontSize: 20))),
             ),
           ),
-          Expanded(
-            child: ListView(children: [
-              ListTile(
-                leading: const Icon(Icons.home),
-                title: const Text("Logout"),
-                onTap: () {
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10),
+            child: ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text("Logout"),
+              onTap: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => const BiblioHomePage()),
+                    (route) => false);
+              },
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10),
+            child: ListTile(
+              leading: const Icon(Icons.person_remove_sharp),
+              title: const Text("Cancella account"),
+              subtitle: const Text("Disiscriviti dal servizio"),
+              onTap: () async {
+                final response = await user.deleteUser();
+
+                if (response.statusCode == 200) {
+                  // rimuovo l'utente dalla lista utenti
+                  //UserList userList = ref.watch(userListProvider.notifier);
+                  //userList.removeUser(user.state.username);
+
+                  // reset notifier
+                  user.state =
+                      UserData(username: 'mario', password: 'passwordDiMario');
+
+                  // apro la pagina
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
                           builder: (context) => const BiblioHomePage()),
                       (route) => false);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.person_remove_sharp),
-                title: const Text("Cancella account"),
-                subtitle: const Text("Disiscriviti dal servizio"),
-                onTap: () async {
-                  final response = await user.deleteUser();
-
-                  if (response.statusCode == 200) {
-                    // rimuovo l'utente dalla lista utenti
-                    //UserList userList = ref.watch(userListProvider.notifier);
-                    //userList.removeUser(user.state.username);
-
-                    // reset notifier
-                    user.state = UserData(
-                        username: 'mario', password: 'passwordDiMario');
-
-                    // apro la pagina
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                            builder: (context) => const BiblioHomePage()),
-                        (route) => false);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Request failed, try reloading JWT!!')));
-                  }
-                },
-              ),
-            ]),
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Request failed, try reloading JWT!!')));
+                }
+              },
+            ),
           )
         ]);
   }

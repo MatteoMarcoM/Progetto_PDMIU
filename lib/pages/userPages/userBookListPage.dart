@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pdmiu_app_biblioteca/main.dart';
 import 'package:pdmiu_app_biblioteca/widgets/mobileUserDrawer.dart';
 import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 import 'package:http/http.dart' as http;
@@ -22,7 +23,7 @@ class UserBookListPage extends ConsumerWidget {
     User user = ref.watch(currentUserProvider.notifier);
 
     final width = MediaQuery.of(context).size.width;
-    final isLarge = width > 800;
+    final isLarge = width > largeScreenBreakpoint;
 
     return Scaffold(
       appBar: AppBar(

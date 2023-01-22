@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pdmiu_app_biblioteca/main.dart';
 import 'package:pdmiu_app_biblioteca/models/user.dart';
 import 'package:pdmiu_app_biblioteca/pages/mainPagesBodys/loginUserPageBody.dart';
 import 'package:pdmiu_app_biblioteca/pages/mainPagesBodys/registerUserPageBody.dart';
@@ -16,7 +17,7 @@ class LoginUserPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width;
-    final isLarge = width > 800;
+    final isLarge = width > largeScreenBreakpoint;
 
     return Scaffold(
       appBar: AppBar(

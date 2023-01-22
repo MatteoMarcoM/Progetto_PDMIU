@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:pdmiu_app_biblioteca/main.dart';
 import 'package:pdmiu_app_biblioteca/pages/mainPagesBodys/biblioHomePageBody.dart';
 import 'package:pdmiu_app_biblioteca/pages/mainPagesBodys/userListPageBody.dart';
 import 'package:pdmiu_app_biblioteca/widgets/largeHomeDrawer.dart';
@@ -14,7 +15,7 @@ class UserListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final isLarge = width > 800;
+    final isLarge = width > largeScreenBreakpoint;
 
     return Scaffold(
       appBar: AppBar(
