@@ -70,9 +70,21 @@ class UserListPageBody extends StatelessWidget {
 }
 
 List<String> _trimResponse(String usersList) {
-  // response.body == 'Lista utenti:\n ... \n'
-  final index = usersList.indexOf('\n');
-  // elimino 'Lista utenti:\n ... \n' dalla risposta
   // ogni utente e' separato da '\n'
-  return usersList.substring(index + 1, usersList.length - 1).split('\n');
+  final List<String> stringList = usersList.split('\n');
+
+  // elimino 'Lista utenti:\n ... \n' dalla risposta
+  stringList.removeAt(0);
+  stringList.removeAt(stringList.length - 1);
+
+  // elimino gli spazi vuoti
+  for (var element in stringList) {
+    element.trim();
+  }
+
+  //elimino stringhe vuote
+  stringList.removeWhere((element) => element == '');
+
+  //debugPrint(stringList.toString());
+  return stringList;
 }

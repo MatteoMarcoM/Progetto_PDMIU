@@ -26,22 +26,23 @@ class UserRenameBookPageBody extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                margin: const EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color: Colors.blueGrey.shade100,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 10,
-                          offset: Offset.fromDirection(120, 8),
-                          color: Colors.blue.shade100)
-                    ]),
-                child: const Center(
-                    child:
-                        Text('Rename a Book', style: TextStyle(fontSize: 20))),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: Colors.blueGrey.shade100,
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 10,
+                            offset: Offset.fromDirection(120, 8),
+                            color: Colors.blue.shade100)
+                      ]),
+                  child: const Center(
+                      child: Text('Rename a Book',
+                          style: TextStyle(fontSize: 20))),
+                ),
               ),
               Container(
                 padding: const EdgeInsets.all(20),
