@@ -14,14 +14,50 @@ class BiblioHomePageBody extends StatelessWidget {
             future: httpHelper.getRootWebSite(),
             builder: ((context, snapshot) {
               if (snapshot.hasError) {
-                return Center(
-                    child: Text('Connection Error: ${snapshot.error}'));
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Center(
+                    child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.blueGrey.shade100,
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 10,
+                                  offset: Offset.fromDirection(120, 8),
+                                  color: Colors.blue.shade100)
+                            ]),
+                        child: Center(
+                          child: Text('Connection Error: ${snapshot.error}',
+                              style: const TextStyle(fontSize: 16)),
+                        )),
+                  ),
+                );
               } else if (snapshot.hasData) {
                 final response = snapshot.data!; // as http.Response;
 
-                return Center(
-                    child: Text(
-                        'Connesso alla root del servizio: ${response.body}'));
+                return Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Center(
+                    child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.blueGrey.shade100,
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 10,
+                                  offset: Offset.fromDirection(120, 8),
+                                  color: Colors.blue.shade100)
+                            ]),
+                        child: Center(
+                          child: Text(
+                              'Connesso alla root del servizio: ${response.body}',
+                              style: const TextStyle(fontSize: 16)),
+                        )),
+                  ),
+                );
               } else {
                 return const Center(child: CircularProgressIndicator());
               }

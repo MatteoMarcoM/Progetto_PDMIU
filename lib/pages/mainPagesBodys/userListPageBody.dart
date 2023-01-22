@@ -14,31 +14,65 @@ class UserListPageBody extends StatelessWidget {
         } else if (snapshot.hasData) {
           final response = snapshot.data!; // as http.Response;
 
-          // return Center(child: _UserListView(response));
-          return ListView(children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                      decoration: const BoxDecoration(color: Colors.white),
-                      margin: const EdgeInsets.only(top: 16, bottom: 16),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 16),
-                      child: Center(
-                        child: Text(response.body,
-                            style: Theme.of(context).textTheme.bodyText1),
-                      ))
-                ],
-              ),
-            )
-          ]);
+          return Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: Colors.blueGrey.shade100,
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 10,
+                            offset: Offset.fromDirection(120, 8),
+                            color: Colors.blue.shade100)
+                      ]),
+                  child: const Center(
+                      child: Text('Lista degli utenti',
+                          style: TextStyle(fontSize: 20))),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: _trimResponse(response.body).length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                            padding: const EdgeInsets.all(20),
+                            margin: const EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: Colors.blueGrey.shade100,
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 10,
+                                      offset: Offset.fromDirection(120, 8),
+                                      color: Colors.blue.shade300)
+                                ]),
+                            child: Center(
+                              child: Text(_trimResponse(response.body)[index],
+                                  style: const TextStyle(fontSize: 20)),
+                            ));
+                      }),
+                ),
+              ],
+            ),
+          );
         } else {
           return const Center(child: CircularProgressIndicator());
         }
       }),
     );
   }
+}
+
+List<String> _trimResponse(String usersList) {
+  // response.body == 'Lista utenti:\n ... \n'
+  final index = usersList.indexOf('\n');
+  // elimino 'Lista utenti:\n ... \n' dalla risposta
+  // ogni utente e' separato da '\n'
+  return usersList.substring(index + 1, usersList.length - 1).split('\n');
 }
