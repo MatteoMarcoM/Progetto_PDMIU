@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdmiu_app_biblioteca/widgets/mobileUserDrawer.dart';
-import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
-import 'package:http/http.dart' as http;
 import '../../models/user.dart';
 import '../../utility/providers.dart';
 
-// "home page" dell'utente
 class UserBookListPageBody extends ConsumerWidget {
   const UserBookListPageBody({super.key});
 
@@ -18,9 +14,29 @@ class UserBookListPageBody extends ConsumerWidget {
       future: user.getLibri(),
       builder: ((context, snapshot) {
         if (snapshot.hasError) {
-          return Center(child: Text('Connection Error: ${snapshot.error}'));
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: Center(
+              child: Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: Colors.deepOrange.shade500,
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 10,
+                            offset: Offset.fromDirection(120, 8),
+                            color: Colors.black.withAlpha(100))
+                      ]),
+                  child: Center(
+                    child: Text('Connection Error: ${snapshot.error}',
+                        style:
+                            const TextStyle(fontSize: 16, color: Colors.white)),
+                  )),
+            ),
+          );
         } else if (snapshot.hasData) {
-          final response = snapshot.data!; // as http.Response;
+          final response = snapshot.data!;
 
           return Padding(
             padding: const EdgeInsets.all(20),

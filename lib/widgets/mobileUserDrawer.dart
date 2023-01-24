@@ -3,9 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userAccountPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userDeleteBookPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userRenameBookPage.dart';
-import 'package:pdmiu_app_biblioteca/utility/providers.dart';
-import '../models/user.dart';
-//import 'package:pdmiu_app_biblioteca/pages/biblioHomePage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userAddBookPage.dart';
 import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 
@@ -18,7 +15,8 @@ class MobileUserDrawer extends ConsumerWidget {
         child: ListView(
       children: [
         const DrawerHeader(
-            decoration: FlutterLogoDecoration(), child: Text("User drawer")),
+            decoration: FlutterLogoDecoration(),
+            child: Text("Mobile User drawer")),
         ListTile(
           leading: const Icon(Icons.my_library_books),
           title: const Text("Lista Libri"),

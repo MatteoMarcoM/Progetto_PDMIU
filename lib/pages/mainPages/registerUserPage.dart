@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/main.dart';
-import 'package:pdmiu_app_biblioteca/models/user.dart';
-import 'package:pdmiu_app_biblioteca/models/userList.dart';
 import 'package:pdmiu_app_biblioteca/pages/mainPagesBodys/loginUserPageBody.dart';
 import 'package:pdmiu_app_biblioteca/pages/mainPagesBodys/registerUserPageBody.dart';
-import 'package:pdmiu_app_biblioteca/utility/providers.dart';
 import 'package:pdmiu_app_biblioteca/widgets/largeHomeDrawer.dart';
-//import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 import 'package:pdmiu_app_biblioteca/widgets/mobileHomeDrawer.dart';
-//import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
 
 class RegisterUserPage extends ConsumerWidget {
   const RegisterUserPage({super.key});

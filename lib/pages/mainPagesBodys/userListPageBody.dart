@@ -10,9 +10,27 @@ class UserListPageBody extends StatelessWidget {
       future: httpHelper.getUsers(),
       builder: ((context, snapshot) {
         if (snapshot.hasError) {
-          return Center(child: Text('Connection Error: ${snapshot.error}'));
+          return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Center(
+                  child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: Colors.deepOrange.shade500,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 10,
+                                offset: Offset.fromDirection(120, 8),
+                                color: Colors.black.withAlpha(100))
+                          ]),
+                      child: Center(
+                        child: Text('Connection Error: ${snapshot.error}',
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.white)),
+                      ))));
         } else if (snapshot.hasData) {
-          final response = snapshot.data!; // as http.Response;
+          final response = snapshot.data!;
 
           return Padding(
             padding: const EdgeInsets.all(20),

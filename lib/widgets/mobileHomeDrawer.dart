@@ -14,7 +14,7 @@ class MobileHomeDrawer extends StatelessWidget {
       children: [
         const DrawerHeader(
             decoration: FlutterLogoDecoration(),
-            child: Text("Small Home drawer")),
+            child: Text("Mobile Home drawer")),
         ListTile(
           leading: const Icon(Icons.home),
           title: const Text("Homepage"),

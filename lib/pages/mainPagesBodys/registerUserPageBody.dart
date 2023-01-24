@@ -87,19 +87,9 @@ class RegisterUserPageBody extends ConsumerWidget {
                 child: ElevatedButton(
                     onPressed: () async {
                       if (username != '' && password != '') {
-                        // per ora ottengo mario
-                        //User user = ref.watch(marioProvider.notifier);
-
-                        // ottengo la lista (in locale) di utenti
-                        //UserList userList = ref.watch(userListProvider.notifier);
-
-                        //User user = userList.selectUser(username);
                         User user = ref.watch(currentUserProvider.notifier);
                         user.state =
                             UserData(username: username, password: password);
-
-                        // aggiungo l'utente
-                        //userList.addUser(user);
 
                         // registro l'utente
                         final response = await user.registerUser();

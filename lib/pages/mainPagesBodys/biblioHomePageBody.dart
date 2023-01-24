@@ -36,7 +36,7 @@ class BiblioHomePageBody extends StatelessWidget {
                   ),
                 );
               } else if (snapshot.hasData) {
-                final response = snapshot.data!; // as http.Response;
+                final response = snapshot.data!;
 
                 return Padding(
                   padding: const EdgeInsets.all(20),
@@ -66,7 +66,6 @@ class BiblioHomePageBody extends StatelessWidget {
               }
             }),
           ),
-          // istruzioni servizio in ListView
         ],
       ),
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/models/user.dart';
-import 'package:pdmiu_app_biblioteca/widgets/mobileUserDrawer.dart';
 import '../../utility/providers.dart';
 
 class UserDeleteBookPageBody extends ConsumerWidget {
@@ -12,9 +11,6 @@ class UserDeleteBookPageBody extends ConsumerWidget {
     String title = '';
 
     // ottengo l'utente
-    //String username = ref.watch(currentUserNameProvider);
-    //User user = ref.watch(specificUserProvider(username));
-
     User user = ref.watch(currentUserProvider.notifier);
 
     return ListView(children: [

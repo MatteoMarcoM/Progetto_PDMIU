@@ -13,13 +13,7 @@ class UserRenameBookPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String oldTitle = '';
-    String newTitle = '';
-
     // ottengo l'utente
-    //String username = ref.watch(currentUserNameProvider);
-    //User user = ref.watch(specificUserProvider(username));
-
     User user = ref.watch(currentUserProvider.notifier);
 
     final width = MediaQuery.of(context).size.width;
@@ -27,11 +21,10 @@ class UserRenameBookPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("${user.state.username}'s Account"),
+        title: Text("${user.getName()}'s Account"),
         actions: [
           IconButton(
               onPressed: () {
-                // setstate o ref.watch?
                 user.loginJWT();
               },
               icon: const Icon(Icons.change_circle)),

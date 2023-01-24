@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/models/user.dart';
-import 'package:pdmiu_app_biblioteca/pages/userPages/userBookListPage.dart';
 import 'package:pdmiu_app_biblioteca/utility/providers.dart';
-//import 'package:pdmiu_app_biblioteca/utility/httpGetHelper.dart' as httpHelper;
-import 'package:pdmiu_app_biblioteca/models/userList.dart';
 import '../userPages/userAddBookPage.dart';
 
 class LoginUserPageBody extends ConsumerWidget {
@@ -91,12 +88,6 @@ class LoginUserPageBody extends ConsumerWidget {
                 child: ElevatedButton(
                     onPressed: () async {
                       if (username != '' && password != '') {
-                        // setto l'utente corrente
-                        //currentUserNameProvider.overrideWithValue(username);
-
-                        //UserList userList = ref.watch(userListProvider.notifier);
-
-                        //User user = userList.selectUser(username);
                         User user = ref.watch(currentUserProvider.notifier);
                         user.state =
                             UserData(username: username, password: password);

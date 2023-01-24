@@ -1,5 +1,3 @@
-import 'dart:isolate';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/main.dart';
@@ -15,12 +13,7 @@ class UserDeleteBookPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String title = '';
-
     // ottengo l'utente
-    //String username = ref.watch(currentUserNameProvider);
-    //User user = ref.watch(specificUserProvider(username));
-
     User user = ref.watch(currentUserProvider.notifier);
 
     final width = MediaQuery.of(context).size.width;
@@ -28,11 +21,10 @@ class UserDeleteBookPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("${user.state.username}'s Account"),
+        title: Text("${user.getName()}'s Account"),
         actions: [
           IconButton(
               onPressed: () {
-                // setstate o ref.watch?
                 user.loginJWT();
               },
               icon: const Icon(Icons.change_circle)),

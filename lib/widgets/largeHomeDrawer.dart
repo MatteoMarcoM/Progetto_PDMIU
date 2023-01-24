@@ -16,7 +16,7 @@ class LargeHomeDrawer extends StatelessWidget {
         ListTile(
           leading: const Icon(Icons.home),
           title: const Text("Homepage / Lista utenti"),
-          subtitle: const Text("Homepage e Accedi al servizio tramite login"),
+          subtitle: const Text("Homepage e Lista utenti registrati"),
           onTap: () {
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(builder: (context) => const BiblioHomePage()),

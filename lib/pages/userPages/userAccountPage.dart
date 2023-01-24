@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdmiu_app_biblioteca/main.dart';
-import 'package:pdmiu_app_biblioteca/widgets/largeUserDrawer.dart';
-import 'package:pdmiu_app_biblioteca/widgets/mobileUserDrawer.dart';
 import '../../models/user.dart';
-import '../../models/userList.dart';
 import '../../utility/providers.dart';
 import '../mainPages/biblioHomePage.dart';
 
-// "home page" dell'utente
 class UserAccountPage extends ConsumerWidget {
   const UserAccountPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // ottengo l'utente
-    //String username = ref.watch(currentUserNameProvider);
-    //User user = ref.watch(specificUserProvider(username));
-
     User user = ref.watch(currentUserProvider.notifier);
 
     final width = MediaQuery.of(context).size.width;
@@ -25,12 +18,10 @@ class UserAccountPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        // oppure fare metodo String user.getUsername()
         title: const Text("Account Info and settings"),
         actions: [
           IconButton(
               onPressed: () {
-                // successful login?
                 user.loginJWT();
               },
               icon: const Icon(Icons.change_circle)),
@@ -111,7 +102,7 @@ class DetailsView extends ConsumerWidget {
                     ),
                     Center(
                       child: Text(
-                        '${user.getName()}',
+                        user.getName(),
                         style:
                             const TextStyle(fontSize: 16, color: Colors.white),
                       ),
@@ -140,7 +131,7 @@ class DetailsView extends ConsumerWidget {
                     const Text('Cookie session JWT: ',
                         style: TextStyle(fontSize: 16, color: Colors.white)),
                     Flexible(
-                        child: Text('${user.state.jwtCookieSession}',
+                        child: Text(user.getCookieJWT(),
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.white)))
                   ],
@@ -205,10 +196,6 @@ class AccountButtonsView extends ConsumerWidget {
                 final response = await user.deleteUser();
 
                 if (response.statusCode == 200) {
-                  // rimuovo l'utente dalla lista utenti
-                  //UserList userList = ref.watch(userListProvider.notifier);
-                  //userList.removeUser(user.state.username);
-
                   // reset notifier
                   user.state =
                       UserData(username: 'mario', password: 'passwordDiMario');
