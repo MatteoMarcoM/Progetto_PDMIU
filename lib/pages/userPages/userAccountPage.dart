@@ -179,6 +179,10 @@ class AccountButtonsView extends ConsumerWidget {
               leading: const Icon(Icons.home),
               title: const Text("Logout"),
               onTap: () {
+                // reset notifier
+                user.logout();
+
+                // apro la pagina
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                         builder: (context) => const BiblioHomePage()),
@@ -197,8 +201,7 @@ class AccountButtonsView extends ConsumerWidget {
 
                 if (response.statusCode == 200) {
                   // reset notifier
-                  user.state =
-                      UserData(username: 'mario', password: 'passwordDiMario');
+                  user.logout();
 
                   // apro la pagina
                   Navigator.of(context).pushAndRemoveUntil(

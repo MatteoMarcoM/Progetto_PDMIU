@@ -35,6 +35,11 @@ class User extends StateNotifier<UserData?> {
     return super.state?.jwtCookieSession ?? 'null';
   }
 
+  // LOGOUT
+  void logout() {
+    state = null;
+  }
+
   // metodi per richieste dell'utente al server tramite API HTTP
 
   // 2. PUT /utenti/register/mario/passwordDiMario
