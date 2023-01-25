@@ -98,3 +98,5 @@ La responsività è garantita per tutte le pagine dell'applicazione ma l'aggiorn
 9. Responsive register / login page (wide screen).
 
 <img src="https://user-images.githubusercontent.com/79084669/214536934-50fc9fac-7116-4390-81f1-5658f7bda891.png" width="800">
+
+### Matteo Marco Montanari
