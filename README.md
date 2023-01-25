@@ -62,3 +62,39 @@ NOTA BENE: Dopo essersi loggati e aver ottenuto il JWT, esso ha una scadenza di 
 ## Responsività
 La responsività è garantita per tutte le pagine dell'applicazione ma l'aggiornamento real time delle liste di utenti e libri vanno effettuate manualmente ricaricando le varie pagine di volta in volta (tramite navigazione con drawer laterale), nel caso di schermo ampio (applicazione Web e app con schermo orrizzontale), mentre è garantito automaticamente nel caso di schermo ridotto in larghezza (app per smartphone con schermo verticale).
 
+## Screenshots interfaccia utente
+1. Mobile home drawer.
+
+<img src="https://user-images.githubusercontent.com/79084669/214536771-d7fe5bb7-cb23-4d77-8565-50add8b942d6.png" width="300">
+
+2. Register user page.
+
+<img src="https://user-images.githubusercontent.com/79084669/214536814-5dd9b3ac-6741-43b9-871f-446e24c5a260.png" width="300">
+
+3. Mobile user drawer.
+
+<img src="https://user-images.githubusercontent.com/79084669/214536853-5f6d3473-422d-4f9b-b654-45f0e2c9cf40.png" width="300">
+
+4. User book list page.
+
+<img src="https://user-images.githubusercontent.com/79084669/214536939-bcd6cca1-6438-4fff-b127-4f57a336065e.png" width="300">
+
+5. Rename book page.
+
+<img src="https://user-images.githubusercontent.com/79084669/214536942-ea6d185b-bcf4-4ab5-ba4a-173a11d5a450.png" width="300">
+
+6. Account page (wide screen).
+
+<img src="https://user-images.githubusercontent.com/79084669/214536948-66195b38-53c5-4ea8-b950-362ae7e093f8.png" width="800">
+
+7. Home page (wide screen).
+
+<img src="https://user-images.githubusercontent.com/79084669/214537066-cf423358-80ad-4322-a45f-547264b5cb2f.png" width="800">
+
+8. Large home drawer.
+
+<img src="https://user-images.githubusercontent.com/79084669/214536921-18526bc9-fd37-4d00-8717-7872f61e3382.png" width="800">
+
+9. Responsive register / login page (wide screen).
+
+<img src="https://user-images.githubusercontent.com/79084669/214536934-50fc9fac-7116-4390-81f1-5658f7bda891.png" width="800">
